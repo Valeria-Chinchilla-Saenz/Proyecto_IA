@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.metrics import mean_squared_error,mean_absolute_error,explained_variance_score, r2_score
+from sklearn.metrics import accurancy_score, classification_report, confusion_matrix
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -71,9 +72,31 @@ class Metricas:
         plt.title("Errores vs. Predicciones")
 
 
+class MetricasClasificacion:
+    def __init__(self, _y_test, y_predicciones):
+        self._y_test = _y_test
+        self.y_predicciones = y_predicciones
 
+    def accurancy(self):
+        #mide el procentaje total de predicciones correctas
+        return accurancy_score(self._y_test, self.y_predicciones)
 
+    def matriz_confusion(self):
+        #muestra cuantas muestras fueron clasificadas correctamente o confundidas
+        return confusion_matrix(self._y_test, self.y_predicciones)
 
+    def reporte_clasificacion(self):
+        #devuelve las métricas
+        return classification_report(self._y_test, self.y_predicciones)
+
+    def plot_matriz_confusion(self):
+        cm = self.matriz_confusion()
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+        plt.xlabel("Clase Predicha")
+        plt.ylabel("Clase Real")
+        plt.title("Matriz de Confusión")
+        plt.show()
 
 
 
