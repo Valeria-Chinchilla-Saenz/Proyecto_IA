@@ -4,7 +4,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation,Dropout
 from tensorflow.keras.callbacks import EarlyStopping
-from src import config
+from scr import config
 
 class ModeloClasificacionDemanda:
     #Clase dedicada a la creación y el modelo de clasificación
@@ -19,7 +19,7 @@ class ModeloClasificacionDemanda:
         self.model = None
 
     def creacion_modelo(self):
-        #Se construye y copila la arquitectura del modelo
+        #Se construye y compila la arquitectura del modelo
         self.model = Sequential()
         num_neuronas = self._x_train.shape[1]
 
