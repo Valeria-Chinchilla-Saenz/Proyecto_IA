@@ -1,4 +1,4 @@
-### Modelo de clasificacion multiclase
+### Entrenamiento del modelo de clasificacion multiclase ###
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
