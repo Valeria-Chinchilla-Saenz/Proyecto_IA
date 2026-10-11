@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f022ba4f-775f-4ccc-ac51-d5470bc291e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f022ba4f-775f-4ccc-ac51-d5470bc291e7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +39,7 @@
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "src",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/valer/OneDrive/Documentos/GitHub/Proyecto_IA",
     "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
     "vue.rearranger.settings.migration": "true"
