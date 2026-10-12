@@ -2,8 +2,11 @@ pandas
 numpy
 matplotlib
 seaborn
+pathlib
+tensorflow
 scikit-learn
-jupyter
+pydantic
 fastapi
 uvicorn
 streamlit
+requests

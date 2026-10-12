@@ -1,133 +1,113 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
+import requests
 import matplotlib.pyplot as plt
 import seaborn as sns
-import matplotlib.patches as mpatches
 
-st.set_page_config(page_title="Análisis de Demanda", page_icon="🚲", layout="wide")
+st.set_page_config(page_title="Análisis de Lotes", page_icon="📈", layout="wide")
 
-st.title("🚲 Análisis Exploratorio de Datos (EDA)")
+st.title("📈 Análisis de Lotes y Proyección Horaria")
 st.markdown("""
-Esta página se presentarán los patrones históricos de demanda de alquiler de bicicletas, 
-en el cual se analizarán la influencia del calendario y las condiciones climáticas.
+Sube un archivo CSV con un lote de datos (por ejemplo, el clima y calendario de las próximas 24 horas). 
+El sistema realizará predicciones masivas para proyectar la demanda por franja horaria y sugerir la redistribución de la flota.
 """)
 
-@st.cache_data
-def load_data():
+# 1. Carga de Archivo (Lote)
+archivo_subido = st.file_uploader("Sube tu archivo de proyecciones (CSV)", type=["csv"])
 
+# URL de tu API
+API_URL_BASE = "http://localhost:8000"
 
-    df = pd.read_csv("data/raw/hour.csv")
-    
-   
-    df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
-    
-    return df
-try:
-    df = load_data()
-    
-    st.write("### Vista Previa de los Datos")
+if archivo_subido is not None:
+    # Leer el CSV
+    df = pd.read_csv(archivo_subido)
+    st.write("### Vista previa del lote cargado:")
     st.dataframe(df.head())
 
-    
-    st.header("1. Patrones de Calendario")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("Promedio de Alquileres por Hora")
-        fig1, ax1 = plt.subplots(figsize=(10, 6))
-        sns.barplot(data=df, x='hr', y='cnt', estimator=np.mean, errorbar=None, ax=ax1)
-        ax1.set_title("Promedio de Alquileres de Bicicletas por Hora del Día")
-        ax1.set_xlabel("Hora del Día (0-23)")
-        ax1.set_ylabel("Promedio de Alquileres (cnt)")
-        st.pyplot(fig1)
+    # Validar que tenga la columna 'hr' (hora) para la gráfica
+    if 'hr' not in df.columns:
+        st.error("El archivo CSV debe contener una columna llamada 'hr' (hora) para graficar la franja horaria.")
+    else:
+        if st.button("🚀 Ejecutar Predicción de Lote"):
+            with st.spinner("Procesando lote de datos a través de la API..."):
 
-    with col2:
-        st.subheader("Promedio de Alquileres por Mes")
-        fig2, ax2 = plt.subplots(figsize=(10, 6))
-        sns.barplot(data=df, x='mnth', y='cnt', estimator=np.mean, errorbar=None, ax=ax2)
-        ax2.set_title("Promedio de Alquileres por mes")
-        ax2.set_xlabel("Meses Ene-Dic (mnth)")
-        ax2.set_ylabel("Promedio de Alquileres (cnt)")
-        st.pyplot(fig2)
+                # Listas para guardar los resultados
+                predicciones_cnt = []
+                predicciones_nivel = []
 
-   
-    st.header("2. Factores Climáticos y Temporada")
-    
-    col3, col4 = st.columns(2)
-    
-    with col3:
-        st.subheader("Alquileres por Temporada")
-        fig3, ax3 = plt.subplots(figsize=(10, 6))
-        sns.boxplot(x='season', y='cnt', hue='season', palette='Set2', data=df, ax=ax3)
-        ax3.set_title("Alquileres de Bicicletas por temporada")
-        ax3.set_xlabel("TEMPORADAS 1-4 (season)")
-        ax3.set_ylabel("Cantidad de alquileres (cnt)")
-        st.pyplot(fig3)
+                # Iterar sobre las filas del dataframe para hacer la predicción
+                # Nota: Si programaste un endpoint /predict/batch en tu FastAPI,
+                # es mejor enviar el JSON completo de una vez. Aquí iteramos asumiendo endpoints individuales.
+                for index, row in df.iterrows():
+                    datos_entrada = {
+                        "season": int(row.get("season", 1)),
+                        "mnth": int(row.get("mnth", 1)),
+                        "hr": int(row.get("hr", 0)),
+                        "holiday": int(row.get("holiday", 0)),
+                        "weekday": int(row.get("weekday", 0)),
+                        "workingday": int(row.get("workingday", 1)),
+                        "weathersit": int(row.get("weathersit", 1)),
+                        "temp": float(row.get("temp", 0.5)),
+                        "atemp": float(row.get("atemp", 0.5)),
+                        "hum": float(row.get("hum", 0.5)),
+                        "windspeed": float(row.get("windspeed", 0.2))
+                    }
 
-    with col4:
-   
-        st.subheader("Influencia de la Situación Climática")
-        fig4, ax4 = plt.subplots(figsize=(10, 6))
-        
-        sns.barplot(
-            data=df, 
-            x='weathersit', 
-            y='cnt', 
-            hue='weathersit', 
-            palette='viridis', 
-            estimator=np.mean, 
-            errorbar=None, 
-            ax=ax4
-        )
-        
-        ax4.set_title("Promedio de Alquileres según Situación Climática")
-        ax4.set_xlabel("Clima (1:Despejado -> 4:Tormenta)")
-        ax4.set_ylabel("Promedio de Alquileres (cnt)")
-        
-        handles, _ = ax4.get_legend_handles_labels()
-        
-        etiquetas_clima = [
-            '1: Despejado', 
-            '2: Nublado/Neblina', 
-            '3: Lluvia ligera/Nieve', 
-            '4: Tormenta fuerte'
-        ]
-        
-        ax4.legend(handles=handles, labels=etiquetas_clima, title="Tipos de Clima", loc='upper right')
-        
-        st.pyplot(fig4)
+                    # Llamada al modelo de Regresión
+                    try:
+                        res_reg = requests.post(f"{API_URL_BASE}/predict/demand", json=datos_entrada)
+                        if res_reg.status_code == 200:
+                            predicciones_cnt.append(res_reg.json().get('demanda_estimada', 0))
+                        else:
+                            predicciones_cnt.append(0)
 
-   
-    st.header("3. Variables Numéricas Continuas")
-    
-    st.subheader("Relación entre Temperatura y Demanda")
-    fig5, ax5 = plt.subplots(figsize=(10, 6))
-    sns.scatterplot(data=df, x='temp', y='cnt', alpha=0.3, color='orange', ax=ax5)
-    ax5.set_title("Relación entre la Temperatura y la Demanda de Bicicletas")
-    ax5.set_xlabel("Temperatura Normalizada (0 a 1)")
-    ax5.set_ylabel("Cantidad de Alquileres (cnt)")
-    st.pyplot(fig5)
+                        # Llamada al modelo de Clasificación
+                        res_clas = requests.post(f"{API_URL_BASE}/predict/demand_level", json=datos_entrada)
+                        if res_clas.status_code == 200:
+                            predicciones_nivel.append(res_clas.json().get('nivel_demanda', 'Desconocido'))
+                        else:
+                            predicciones_nivel.append("Error")
 
-    st.subheader("Matriz de Correlación")
-    fig6, ax6 = plt.subplots(figsize=(12, 8))
-    matriz_corr_inicial = df.corr(numeric_only=True)
-    sns.heatmap(
-        matriz_corr_inicial,
-        annot=True,
-        fmt=".2f",
-        cmap="coolwarm",
-        vmin=-1, vmax=1,
-        center=0,
-        linewidths=0.5,
-        cbar_kws={"shrink": 0.8},
-        ax=ax6
-    )
-    ax6.set_title("Matriz de Correlación - Variables Iniciales Completas")
-    st.pyplot(fig6)
+                    except Exception as e:
+                        st.error("Error de conexión con la API.")
+                        break
 
-except FileNotFoundError:
-    st.error(" No se encontró el archivo de datos.")
+                # Añadir los resultados al DataFrame
+                if len(predicciones_cnt) == len(df):
+                    df['Demanda_Proyectada'] = predicciones_cnt
+                    df['Nivel_Alerta'] = predicciones_nivel
 
- 
+                    st.success("✅ ¡Predicción masiva completada!")
+
+                    # Mostrar resultados tabulares
+                    st.write("### Resultados del Lote")
+                    st.dataframe(df[['hr', 'temp', 'weathersit', 'Demanda_Proyectada', 'Nivel_Alerta']])
+
+                    # 2. Proyección de demanda por franja horaria (Requisito del PDF)
+                    st.header("📉 Proyección de Demanda por Franja Horaria")
+                    fig, ax = plt.subplots(figsize=(12, 5))
+                    sns.lineplot(data=df, x='hr', y='Demanda_Proyectada', marker="o", color="blue", ax=ax)
+                    ax.set_title("Proyección de Alquileres a lo largo del día")
+                    ax.set_xlabel("Hora del Día")
+                    ax.set_ylabel("Cantidad de Bicicletas Estimadas")
+                    ax.set_xticks(range(0, 24))
+                    ax.grid(True, linestyle="--", alpha=0.6)
+                    st.pyplot(fig)
+
+                    # 3. Recomendaciones de redistribución de la flota (Requisito del PDF)
+                    st.header("🚚 Recomendaciones de Redistribución de Flota")
+
+                    horas_pico = df[df['Nivel_Alerta'] == 'Pico']['hr'].tolist()
+                    horas_alta = df[df['Nivel_Alerta'] == 'Alta']['hr'].tolist()
+
+                    if horas_pico or horas_alta:
+                        st.warning("⚠️ **Alerta de Alta Demanda Detectada**")
+                        if horas_pico:
+                            st.write(
+                                f"- **Urgente:** Se espera nivel **PICO** a las horas: {horas_pico}. Se recomienda enviar camiones de redistribución 1 hora antes a las estaciones principales (centros de trabajo/estudio).")
+                        if horas_alta:
+                            st.write(
+                                f"- **Atención:** Se espera nivel **ALTO** a las horas: {horas_alta}. Monitorear disponibilidad de anclajes libres.")
+                    else:
+                        st.info(
+                            "✅ La demanda proyectada es manejable con la distribución actual de la flota. No se requieren traslados de emergencia.")
