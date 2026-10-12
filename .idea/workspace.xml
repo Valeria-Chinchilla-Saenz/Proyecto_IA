@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f022ba4f-775f-4ccc-ac51-d5470bc291e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/gitkeep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/gitkeep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/processed/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/processed/train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/Readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/day.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/modelo1.keras" beforeDir="false" afterPath="$PROJECT_DIR$/models/modelo1.keras" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/04_ANN_Modelo2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/04_ANN_Modelo2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/Prueba.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Prueba.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_prep.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_prep.py" afterDir="false" />
-    </list>
+    <list default="true" id="f022ba4f-775f-4ccc-ac51-d5470bc291e7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
