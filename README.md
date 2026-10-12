@@ -11,7 +11,7 @@ Este proyecto utiliza Redes Neuronales Artificiales (ANN) para predecir la deman
 ##  Guía de Instalación y Uso
 1. Clonar el repositorio.
 2. Instalar las dependencias usando `%pip install -r ../requirements.txt`.
-3. Para ejecutar la API: `Roberto lo va aponer `
+3. Para ejecutar la API: `uvicorn api.main:app --reload`
 4. Para ejecutar el Dashboard: `streamlit run app/Home.py`
 
 ## 📁 Estructura del Proyecto
