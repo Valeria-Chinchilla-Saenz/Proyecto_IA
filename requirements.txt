@@ -5,3 +5,6 @@ seaborn
 pathlib
 tensorflow
 scikit-learn
+pydantic
+fastapi
+unicorn
