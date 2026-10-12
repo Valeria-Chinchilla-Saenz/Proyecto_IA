@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f022ba4f-775f-4ccc-ac51-d5470bc291e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/api/gitkeep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/processed/gitkeep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/gitkeep.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/train.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/modelo1.keras" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/notebooks/Prueba.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Prueba.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/gitkeep.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/data_prep.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/data_prep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/data_prep.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_prep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/train/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/train/model1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train/model1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/train/model2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train/model2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/train/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,21 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;src&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/valer/OneDrive/Documentos/GitHub/Proyecto_IA&quot;,
-    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "src",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/valer/OneDrive/Documentos/GitHub/Proyecto_IA",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

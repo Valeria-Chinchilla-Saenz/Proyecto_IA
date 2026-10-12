@@ -38,6 +38,7 @@ class ModeloRegresionDemanda:
                    validation_split=0.2,
                    batch_size= self._lotes, epochs=self._epocas,
                    callbacks=[self._early_stop])
+        return self._model
 
 
     def predecir(self, datos):

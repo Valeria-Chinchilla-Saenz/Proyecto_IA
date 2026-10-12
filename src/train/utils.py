@@ -1,11 +1,11 @@
 import pandas as pd
 from sklearn.metrics import mean_squared_error,mean_absolute_error,explained_variance_score, r2_score
-from sklearn.metrics import accurancy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-class EvaluacionPerdidas:
+class EvaluacionPerdidasRegresion:
     def __init__(self, modelo):
         self._modelo = modelo
         self._losses = None
@@ -19,6 +19,17 @@ class EvaluacionPerdidas:
         grafico = self._losses.plot()
         return grafico
 
+class EvaluacionPerdidasClasificacion:
+    def __init__(self, historial):
+        self._historial = historial
+        self._losses = None
+
+    def perdidas(self):
+        self._losses = pd.DataFrame(self._historial.history)
+        return self._losses
+
+    def grafica_perdidas(self):
+        return self._losses.plot()
 
 class Metricas:
     def __init__(self, y_test, predicciones):
@@ -79,7 +90,7 @@ class MetricasClasificacion:
 
     def accurancy(self):
         #mide el procentaje total de predicciones correctas
-        return accurancy_score(self._y_test, self.y_predicciones)
+        return accuracy_score(self._y_test, self.y_predicciones)
 
     def matriz_confusion(self):
         #muestra cuantas muestras fueron clasificadas correctamente o confundidas

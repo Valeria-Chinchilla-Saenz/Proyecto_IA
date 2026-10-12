@@ -6,7 +6,7 @@ app = FastAPI(title="API Predicción de Demanda de Bicicletas")
 
 
 predictor_demanda = PredictorDemanda()
-#predictor_nivel = PredictorNivelDemanda()
+predictor_nivel = PredictorNivelDemanda()
 
 
 @app.post("/predict/demand", response_model=RespuestaDemanda)
@@ -15,7 +15,7 @@ def predecir_demanda(solicitud: SolicitudDemanda):
     return RespuestaDemanda(demanda_estimada=demanda)
 
 
-'''@app.post("/predict/demand_level", response_model=RespuestaNivelDemanda)
+@app.post("/predict/demand_level", response_model=RespuestaNivelDemanda)
 def predecir_nivel_demanda(solicitud: SolicitudDemanda):
     nivel = predictor_nivel.predecir(solicitud)
-    return RespuestaNivelDemanda(nivel_demanda=nivel)'''
+    return RespuestaNivelDemanda(nivel_demanda=nivel)
