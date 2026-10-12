@@ -20,6 +20,50 @@ Este proyecto utiliza Redes Neuronales Artificiales (ANN) para predecir la deman
 * `/api`: Código de la API REST con FastAPI.
 * `/app`: Frontend web multipágina construido con Streamlit.
 
-## 📊 Resultados de los Modelos
-*(Espacio reservado para que B y C agreguen sus métricas MAE, RMSE y matriz de confusión).*
+## Dataset 
+* Fuente: Bike Sharing Dataset (UCI Machine Learning Repository)
+* URL: https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset
+* Registros: 17,379
+* Variables: 17 (calendario, clima y conteos climaticos)
 
+## 📊 Resultados de los Modelos
+Modelo 1 - Regresión:
+
+  Objetivo: Predecir la cantidad de alquileres por hora
+  
+  Arquitectura: Red neuronal con dos capas ocultas y Dropout al 50%
+  
+  Métricas:
+  
+  * MAE: 47.42
+  
+  * RSE: 70.32
+
+   * Varianza Explicada: 0.8439
+    
+  * R2: 0.8439
+  
+  Modelo 2 - Clasificación Multiclase:
+  
+  Objetivo: Clasificar nivel de demanda en cuatro categorías (Baja, Media, Alta, Pico)
+  
+  Arquitectura: Red neuronal simple (contiene dos capas).
+  
+  Métricas:
+  
+  * Accuracy: 0.76
+
+  * Precisión promedio: 0.77
+  
+  * Recall promedio: 0.77
+  
+  * F1-score promedio: 0.77
+
+## 📈 Comparación de los resultados
+
+El modelo de regresión obtiene una mayor capacidad (R² ≈ 0.80) al trabajar con una variable, en cambio el modelo multiclase enfrenta más compleja al segmentar la demanda de bicicletas en cuatro niveles. A pesar de que el modelo regresión logra mayor precisión numérica, el modelo de clasificación aporta un valor analítico superior al permitir categorizar patrones de comportamiento y facilitar decisiones estratégicas en contextos de negocio.
+
+
+
+
+         
