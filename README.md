@@ -63,7 +63,8 @@ Modelo 1 - Regresión:
 
 El modelo de regresión obtiene una mayor capacidad (R² ≈ 0.80) al trabajar con una variable, en cambio el modelo multiclase enfrenta más compleja al segmentar la demanda de bicicletas en cuatro niveles. A pesar de que el modelo regresión logra mayor precisión numérica, el modelo de clasificación aporta un valor analítico superior al permitir categorizar patrones de comportamiento y facilitar decisiones estratégicas en contextos de negocio.
 
+## 💡 Conclusiones
 
-
+Como se pudo observar en el EDA se reveló que la demanda de bicicletas está fuertemente influenciada por la hora del día, registrando alta demanda a las 8:00 AM, y entre las 5:00 PM y 6:00 PM, así como por factores climáticos donde los días despejados favorecen el uso y las lluvias o tormentas lo reducen drásticamente. Para manejar estos cambios en los datos, implementamos dos modelos de Redes Neuronales ajustados cada uno en sus capas para evitar sobreajuste: el modelo de regresión, predice la cantidad de bicicletas por hora, y el modelo de clasificación multiclase, categoriza el nivel de demanda (Baja/Media/Alta/Pico).
 
          
