@@ -7,4 +7,5 @@ tensorflow
 scikit-learn
 pydantic
 fastapi
-unicorn
+uvicorn
+streamlit
