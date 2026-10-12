@@ -17,7 +17,7 @@ en el cual se analizarán la influencia del calendario y las condiciones climát
 def load_data():
 
 
-    df = pd.read_csv("data/processed/datos_post_eda.csv")
+    df = pd.read_csv("data/raw/hour.csv")
     
    
     df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
